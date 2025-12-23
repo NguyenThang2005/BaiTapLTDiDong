@@ -4,9 +4,7 @@ void main() {
   runApp(const MyApp());
 }
 
-/// =======================
 /// APP ROOT
-/// =======================
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -19,9 +17,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/// =======================
-/// ABSTRACT CLASS (Abstraction)
-/// =======================
+/// ABSTRACT CLASS (Tính trừu tượng)
 abstract class PaymentMethod {
   final String id;
   final String name;
@@ -30,9 +26,7 @@ abstract class PaymentMethod {
   PaymentMethod(this.id, this.name, this.logoPath);
 }
 
-/// =======================
-/// INHERITANCE
-/// =======================
+/// INHERITANCE (Tính kế thừa)
 class PaypalPayment extends PaymentMethod {
   PaypalPayment()
       : super('paypal', 'PayPal', 'assets/images/paypal.png');
@@ -48,9 +42,7 @@ class ApplePayPayment extends PaymentMethod {
       : super('applepay', 'Apple Pay', 'assets/images/applepay.png');
 }
 
-/// =======================
 /// PAYMENT PAGE
-/// =======================
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
 
@@ -83,9 +75,6 @@ class _PaymentPageState extends State<PaymentPage> {
         children: [
           const SizedBox(height: 30),
 
-          /// =======================
-          /// TOP DISPLAY (ĐÃ SỬA)
-          /// =======================
           selectedMethod == null
               ? Column(
             children: [
@@ -100,7 +89,7 @@ class _PaymentPageState extends State<PaymentPage> {
               : Column(
             children: [
               Image.asset(
-                selectedMethod!.logoPath,
+                selectedMethod!.logoPath,     //Tính đa hình
                 height: 80,
               ),
               const SizedBox(height: 10),
@@ -118,9 +107,7 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           const SizedBox(height: 40),
 
-          /// =======================
           /// PAYMENT LIST
-          /// =======================
           ...methods.map(
                 (method) => PaymentItem(
               method: method,
@@ -131,9 +118,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
           const Spacer(),
 
-          /// =======================
           /// CONTINUE BUTTON
-          /// =======================
           if (selectedMethod != null)
             Padding(
               padding: const EdgeInsets.all(16),
@@ -169,9 +154,7 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 }
 
-/// =======================
-/// PAYMENT ITEM
-/// =======================
+/// PAYMENT ITEM (Tính đóng gói)
 class PaymentItem extends StatelessWidget {
   final PaymentMethod method;
   final bool isSelected;
